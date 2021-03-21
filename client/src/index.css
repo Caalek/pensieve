@@ -1,0 +1,35 @@
+body {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.box-title {
+  text-align: center;
+}
+
+.navbar-brand {
+  font-size: 40px;
+}
+
+.main-title {
+  font-size: 60px;
+}
+
+.site-title {
+  margin-left: 10px;
+}
+
+.modal-dialog {
+  padding-top: 10%;
+}
+
+.center {
+  text-align: center;
+}
+
+i {
+  font-size: 15px;
+}
