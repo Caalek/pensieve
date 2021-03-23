@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const cors = require('cors')
 const boolParser = require('express-query-boolean')
 const schedule = require('node-schedule')
 const path = require('path')
@@ -14,7 +13,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 app = express()
 app.use(express.json())
 app.use(boolParser())
-app.use(cors())
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 app.use(express.static(path.join(__dirname, '../client/build')))
 

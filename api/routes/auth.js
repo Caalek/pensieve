@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const User = require('../models/user')
-const {verifyToken, hcaptcha} = require('../middleware')
+const verifyToken = require('../middleware')
 const router = express.Router()
 const jwtSecret = process.env.JWT_SECRET
 
