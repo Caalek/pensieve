@@ -6,7 +6,6 @@ const cors = require('cors')
 const boolParser = require('express-query-boolean')
 const schedule = require('node-schedule')
 const path = require('path')
-const port = 3001
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -27,15 +26,17 @@ app.use('/api', userRoutes)
 const noteRoutes = require('./routes/notes')
 app.use('/api', noteRoutes)
 
-// catch-all
+// catch-all route
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
 
 const deleteTrash = require('./scripts/deleteTrash')
+const host = '0.0.0.0'
+const port = 3001 || process.env.PORT
 
-app.listen(port || process.env.PORT, () => {
-  console.log(`API running on port ${port || process.env.PORT}`)
+app.listen(port, host, () => {
+  console.log(`API running on port ${port}`)
   schedule.scheduleJob('0 0 * * *', () => {
     deleteTrash()
   })

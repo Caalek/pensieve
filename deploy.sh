@@ -1,7 +1,4 @@
-cd client
-npm install
-npm run build
-cd ..
-cd api
-npm install
-npm start
+cd client && npm install && npm run build
+echo "Created React production build"
+cd ../api && npm install && npm start
+echo "api started"
