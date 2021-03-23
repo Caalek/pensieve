@@ -16,4 +16,4 @@ const verifyToken = (req, res, next) => {
   })
 }
 
-module.exports = {verifyToken, hcaptcha}
+module.exports = verifyToken
