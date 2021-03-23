@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sh deploy.sh"
+    "start": "cd client && npm install && npm run build && cd ../api && npm install && npm start"
   },
   "engines": {
     "node": "12.19.0"
