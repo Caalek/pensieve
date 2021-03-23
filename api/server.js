@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
 
 const deleteTrash = require('./scripts/deleteTrash')
 
-app.listen(port || process.env.PORT, () => {
+app.listen(port, () => {
   console.log(`API running on port ${port}`)
   schedule.scheduleJob('0 0 * * *', () => {
     deleteTrash()
