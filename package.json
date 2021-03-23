@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd client && npm install && npm run build && cd ../api && npm install && npm start"
+    "start": "cd api && npm install && npm start",
+    "postinstall": "cd client && npm install && npm run build"
   },
   "engines": {
     "node": "12.19.0"
