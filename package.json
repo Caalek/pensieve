@@ -1,0 +1,25 @@
+{
+  "name": "pensieve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd api && npm install && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines": {
+    "node": "12.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caalek/pensieve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caalek/pensieve/issues"
+  },
+  "homepage": "https://github.com/Caalek/pensieve#readme"
+}

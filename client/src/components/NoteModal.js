@@ -17,7 +17,7 @@ export default function NoteModal(props) {
       pinned: isPinned,
       contents: noteContents
     }
-    await axios.post('http://localhost:3001/note', jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+    await axios.post('/api/note', jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
   }
 
   async function editNote() {
@@ -28,7 +28,7 @@ export default function NoteModal(props) {
     if (noteContents !== props.contents) Object.assign(jsonData, {contents: noteContents})
     else if (isPinned !== props.pinned) Object.assign(jsonData, {pinned: isPinned})
     else return
-    await axios.patch(`http://localhost:3001/note/${props.noteId}`, jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+    await axios.patch(`/api/note/${props.noteId}`, jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
   }
 
   function handleSubmit() {
@@ -53,12 +53,12 @@ export default function NoteModal(props) {
 
         {isPinned ? 
         <Form.Group>
-          <Form.Label><i className="fas fa-thumbtack"></i></Form.Label>
+          <Form.Label><i id="pin-icon" className="fas fa-thumbtack"></i></Form.Label>
           <Form.Check onChange={(e) => setIsPinned(e.target.checked)}checked></Form.Check>
         </Form.Group>
         :
         <Form.Group>
-          <Form.Label><i class="fas fa-thumbtack"></i></Form.Label>
+          <Form.Label><i id="pin-icon" className="fas fa-thumbtack"></i></Form.Label>
           <Form.Check onChange={(e) => setIsPinned(e.target.checked)}></Form.Check>
         </Form.Group>}
 

@@ -12,7 +12,7 @@ export default function NoteGrid(props) {
 
   useEffect(() => {
     async function fetchNotes() {
-      const response = await axios.get(`http://localhost:3001/notes${props.queryString}`, {headers: {'Authorization': `Bearer ${getToken()}`}})
+      const response = await axios.get(`/api/notes${props.queryString}`, {headers: {'Authorization': `Bearer ${getToken()}`}})
       setNotes(response.data)
       setIsLoading(false)
     }

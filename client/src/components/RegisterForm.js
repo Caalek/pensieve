@@ -18,13 +18,13 @@ export default function RegisterForm() {
     const jsonData = {
       username: username,
       email: email,
-      password: password,
+      password: password
     }
-    axios.post('http://localhost:3001/register', jsonData, {headers: {'Content-Type': 'application/json'}})
+    axios.post('/api/register', jsonData, {headers: {'Content-Type': 'application/json'}})
     .then(response => {
       if (response.data.message === 'sucess') {
-        setIsRegistered(true)
         setToken(response.data.token)
+        setIsRegistered(true)
       } else {
         setError(response.data.message)
       }
@@ -33,6 +33,7 @@ export default function RegisterForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    console.log('form submitted')
     registerUser(username, email, password)
   }
 
@@ -57,6 +58,8 @@ export default function RegisterForm() {
               <Form.Group>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="Password:"></Form.Control>
+              </Form.Group>
+              <Form.Group>
               </Form.Group>
               <Button className="mt-3" size="lg" type="submit">Register</Button>
               <Form.Group>

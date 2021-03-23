@@ -12,51 +12,41 @@ import Row from 'react-bootstrap/Row'
 export default function NotePreview(props) {
   const [isEditing, setIsEditing] = useState(false)
 
-  async function deleteNote() {
+  async function patchNote(jsonData) {
+    await axios.patch(`/api/note/${props.noteId}`,  jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+  }
+
+  async function deleteNoteForever() {
+    await axios.delete(`/api/note/${props.noteId}`, {headers: {'Authorization': `Bearer ${getToken()}`}})
+  }
+
+  function handleDelete(e) {
     const jsonData = {
       archived: false,
       deleted: true,
       deletedAt: new Date()
     }
-    await axios.patch(`http://localhost:3001/note/${props.noteId}`,  jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+    patchNote(jsonData)
   }
 
-  async function archiveNote() {
-    const jsonData = {
-      archived: true
-    }
-    await axios.patch(`http://localhost:3001/note/${props.noteId}`, jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+  function handleArchive(e) {
+    patchNote({archived: true})
   }
 
-  async function restoreNote() {
-    const jsonData = {
-      deleted: false
-    }
-    await axios.patch(`http://localhost:3001/note/${props.noteId}`, jsonData, {headers: {'Authorization': `Bearer ${getToken()}`}})
+  function handleRestore(e) {
+    patchNote({deleted: false})
   }
 
-  async function deleteNoteForever() {
-    await axios.delete(`http://localhost:3001/note/${props.noteId}`, {headers: {'Authorization': `Bearer ${getToken()}`}})
+  function handleRemoveFromArchive(e) {
+    patchNote({archived: false})
   }
 
-  function handleDelete() {
-    deleteNote()
-  }
-
-  function handleArchive() {
-    archiveNote()
-  }
-
-  function handleDeleteForever() {
+  function handleDeleteForever(e) {
     deleteNoteForever()
   }
   
   function changeStatus() {
     setIsEditing(false)
-  }
-
-  function handleRestore() {
-    restoreNote()
   }
   
   return (
@@ -72,42 +62,52 @@ export default function NotePreview(props) {
             <Container>
               <Row>
 
-                <Col>
                   {!props.deleted &&
-                  <div>
+                  <Col>
                     <Button title="Edit" type="submit" onClick={() => setIsEditing(true)}><i className="fas fa-edit"></i></Button>
                     <span>&nbsp;</span>
-                  </div>}
-                </Col>
+                  </Col>}
 
-                <Col>
                   {!props.deleted && !props.archived &&
-                  <Form onSubmit={handleArchive}>
-                    <Button title="Archive" type="submit"><i className="fas fa-archive"></i></Button>
-                    <span>&nbsp;</span> 
-                  </Form>}
-                </Col>
-                
-                <Col>
+                  <Col>
+                    <Form onSubmit={handleArchive}>
+                      <Button title="Archive" type="submit"><i className="fas fa-archive"></i></Button>
+                      <span>&nbsp;</span> 
+                    </Form>
+                  </Col>}
+      
                 {!props.deleted &&
-                <Form onSubmit={handleDelete}>
-                    <Button title="Delete"type="submit"><i className="fas fa-trash-alt"></i></Button>
-                    <span>&nbsp;</span>
-                </Form>}
-                </Col>
+                <Col>
+                  <Form onSubmit={handleDelete}>
+                      <Button title="Delete"type="submit"><i className="fas fa-trash-alt"></i></Button>
+                      <span>&nbsp;</span>
+                  </Form>
+                </Col>}
+  
+                  {props.deleted &&
+                  <Col> 
+                  <Form onSubmit={handleDeleteForever}>
+                    <Button title="Purge" type="submit"><i className="fas fa-bomb"></i></Button>
+                    <span>&nbsp;</span> 
+                  </Form>
+                  </Col>}
+                
+                  {props.deleted &&
+                  <Col> 
+                  <Form onSubmit={handleRestore}>
+                    <Button title="Restore" type="submit"><i className="fas fa-trash-restore"></i></Button>
+                    <span>&nbsp;</span>  
+                  </Form>
+                  </Col>}
+              
+                {props.archived &&
+                <Col>
+                <Form onSubmit={handleRemoveFromArchive}>
+                  <Button title="Remove from archive" type="submit"><i className="fas fa-trash-restore"></i></Button>
+                  <span>&nbsp;</span>  
+                </Form>
+                </Col>}
 
-              {props.deleted &&
-              <Form onSubmit={handleDeleteForever}>
-                <Button title="Purge" type="submit"><i className="fas fa-bomb"></i></Button>
-                <span>&nbsp;</span> 
-              </Form>}
-
-              {props.deleted &&
-              <Form onSubmit={handleRestore}>
-                <Button title="Restore" type="submit"><i className="fas fa-trash-restore"></i></Button>
-                <span>&nbsp;</span>  
-              </Form>}
-              <span>&nbsp;</span>
               </Row>
             </Container>
         </Card.Body>

@@ -33,3 +33,19 @@ ul {
 i {
   font-size: 15px;
 }
+
+#pin-icon {
+  font-size: 25px;
+}
+
+#main-page-bg {
+  background-color: #0D6EFD;
+}
+
+.main-page-slogan {
+  color: white;
+}
+
+.footer {
+  font-size: small  ;
+}

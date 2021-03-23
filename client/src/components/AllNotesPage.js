@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import TabNavigation from './TabNavigation'
 import TitleBar from './TitleBar'
 import NoteGrid from './NoteGrid'
+import NavbarComponent from './NavbarComponent'
 
 export default function AllNotesPage() {
 
@@ -13,12 +14,13 @@ export default function AllNotesPage() {
   }
   return (
     <Container>
-      <TabNavigation selected="/notes/all"></TabNavigation>
-      <TitleBar title="Notes" showCreateButton={true}></TitleBar>
+      <NavbarComponent />
+      <TabNavigation selected="/notes/all" />
+      <TitleBar title="Notes" showCreateButton={true} />
       <Container className="mt-3"><h5>Pinned</h5></Container>
-      <NoteGrid queryString="?pinned=true&archived=false&deleted=false"></NoteGrid>
+      <NoteGrid queryString="?pinned=true&archived=false&deleted=false" />
       <Container className="mt-3"><h5>Other</h5></Container>
-      <NoteGrid queryString="?archived=false&deleted=false&pinned=false"></NoteGrid>
+      <NoteGrid queryString="?archived=false&deleted=false&pinned=false" />
     </Container>
   )
 }

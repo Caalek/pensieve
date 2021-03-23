@@ -1,11 +1,13 @@
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import MainPage from './components/MainPage'
 import AllNotesPage from './components/AllNotesPage';
-import LoginPage from "./components/LoginPage";
+import LoginForm from "./components/LoginForm";
 import SettingsPage from "./components/SettingsPage";
 import ArchivePage from './components/ArchivePage'
 import TrashPage from './components/TrashPage'
-import NavbarComponent from "./components/NavbarComponent";
+import BasicFormPage from "./components/BasicFormPage";
+import ForgotPasswordForm from "./components/ForgotPasswordForm";
+import ResetPasswordPage from "./components/ResetPasswordPage";
 
 export default function App() {
   return (
@@ -16,24 +18,24 @@ export default function App() {
             <MainPage />
           </Route>
           <Route path="/login">
-            <LoginPage />
+            <BasicFormPage form={<LoginForm />} />
           </Route>
           <Route path="/notes/all">
-            <NavbarComponent></NavbarComponent>
             <AllNotesPage />
           </Route>
           <Route path="/notes/archive">
-            <NavbarComponent></NavbarComponent>
             <ArchivePage />
           </Route>
           <Route path="/notes/trash">
-            <NavbarComponent></NavbarComponent>
-            <TrashPage></TrashPage>
+            <TrashPage />
           </Route>
           <Route path="/settings">
-            <NavbarComponent></NavbarComponent>
-            <SettingsPage></SettingsPage>
+            <SettingsPage />
           </Route>
+          <Route path="/forgot-password">
+            <BasicFormPage form={<ForgotPasswordForm />} />
+          </Route>
+          <Route path="/reset-password-page/:token" component={ResetPasswordPage} />
         </Switch>
       </Router>
     </div>

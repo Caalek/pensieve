@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import NoteGrid from './NoteGrid'
 import TabNavigation from './TabNavigation';
 import TitleBar from './TitleBar';
+import NavbarComponent from './NavbarComponent'
 
 export default function ArchivePage() {
 
@@ -14,9 +15,10 @@ export default function ArchivePage() {
 
   return (
     <Container>
-      <TabNavigation selected="/notes/archive"></TabNavigation>
-      <TitleBar title="Archive" showCreateButton={false}></TitleBar>
-      <NoteGrid queryString="?archived=true"></NoteGrid>
+      <NavbarComponent />
+      <TabNavigation selected="/notes/archive" />
+      <TitleBar title="Archive" showCreateButton={false} />
+      <NoteGrid queryString="?archived=true" />
     </Container>
   )
 }

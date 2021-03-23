@@ -1,11 +1,11 @@
 import {isExpired} from 'react-jwt'
 
 function getToken() {
-  return sessionStorage.getItem('token')
+  return localStorage.getItem('token')
 }
 
 function setToken(token) {
-  return sessionStorage.setItem('token', token)
+  return localStorage.setItem('token', token)
 }
 
 function checkCurrentUserAuth() {
@@ -14,7 +14,7 @@ function checkCurrentUserAuth() {
 }
 
 function deleteToken() {
-  sessionStorage.removeItem('token')
+  localStorage.removeItem('token')
   window.location = '/'
 }
 

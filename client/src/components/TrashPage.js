@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import NoteGrid from './NoteGrid'
 import TabNavigation from './TabNavigation';
 import TitleBar from './TitleBar';
+import NavbarComponent from './NavbarComponent'
 
 export default function TrashPage() {
 
@@ -14,10 +15,11 @@ export default function TrashPage() {
 
   return (
     <Container>
+      <NavbarComponent />
       <TabNavigation selected="/notes/trash"></TabNavigation>
       <TitleBar title="Trash" showCreateButton={false}></TitleBar>
       <NoteGrid queryString="?deleted=true"></NoteGrid>
-      <div class="center mt-3 gray">Notes in the trash are deleted after 7 days.</div>
+      <div className="center mt-3 gray">Notes in the trash are deleted after 7 days.</div>
     </Container>
   )
 }
