@@ -32,7 +32,7 @@ app.get('*', (req, res) => {
 })
 
 const deleteTrash = require('./scripts/deleteTrash')
-const port = process.env.PORT || 3001
+const port = process.env.PORT
 
 app.listen(port, () => {
   console.log(`API running on port ${port}`)
