@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/Caalek/pensieve/issues"
   },
-  "homepage": "https://github.com/Caalek/pensieve#readme"
+  "homepage": "https://github.com/Caalek/pensieve#readme",
+  "dependencies": {}
 }
