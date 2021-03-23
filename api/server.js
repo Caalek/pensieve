@@ -27,15 +27,15 @@ app.use('/api', userRoutes)
 const noteRoutes = require('./routes/notes')
 app.use('/api', noteRoutes)
 
-// catch-all route
+// catch-all
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
 
 const deleteTrash = require('./scripts/deleteTrash')
 
-app.listen(port, () => {
-  console.log(`API running on port ${port}`)
+app.listen(port || process.env.PORT, () => {
+  console.log(`API running on port ${port || process.env.PORT}`)
   schedule.scheduleJob('0 0 * * *', () => {
     deleteTrash()
   })
