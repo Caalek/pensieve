@@ -12,6 +12,7 @@ import NavbarComponent from './NavbarComponent'
 import Spinner from 'react-bootstrap/Spinner'
 import TitleBar from './TitleBar';
 import Alert from 'react-bootstrap/Alert'
+import FooterComponent from './FooterComponent';
 
 export default function SettingsPage() {
   const [email, setEmail] = useState()
@@ -20,6 +21,7 @@ export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    document.title = 'Pensieve | Settings'
     async function fetchUserData() {
       const response = await axios.get('/api/user', {headers: {'Authorization': `Bearer ${getToken()}`}})
       setUsername(response.data.username)
@@ -54,8 +56,8 @@ export default function SettingsPage() {
   }
   return (
     <div>
+      <NavbarComponent bg="transparent" />
       <Container>
-        <NavbarComponent />
         {message && <Alert variant="success">{message}</Alert>}
         <TitleBar title="Settings" showNewButton={false}></TitleBar>
         <Row>
@@ -87,6 +89,7 @@ export default function SettingsPage() {
           </Col>
         </Row>
       </Container>
+      <FooterComponent />
     </div>
   )
 }

@@ -60,7 +60,7 @@ export default function NotePreview(props) {
             {props.previewText.substring(0, 100) + '...'}
           </Card.Text>
             <Container>
-              <Row>
+              <Row className="center">
 
                   {!props.deleted &&
                   <Col>

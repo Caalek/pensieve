@@ -8,14 +8,14 @@ import axios from 'axios'
 import {setToken} from '../utils'
 
 export default function LoginForm() {
-  const [username, setUsername] = useState()
   const [password, setPassword] = useState()
+  const [email, setEmail] = useState()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState()
 
-  async function loginUser(username, password) {
+  async function loginUser(email, password) {
     const jsonData = {
-      username: username,
+      email: email,
       password: password
     }
     const response = await axios.post('/api/login', jsonData, {headers: {'Content-Type': 'application/json'}})
@@ -29,7 +29,7 @@ export default function LoginForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    loginUser(username, password)
+    loginUser(email, password)
   }
   
   if (isLoggedIn) {
@@ -43,8 +43,8 @@ export default function LoginForm() {
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control onChange={(e) => {setUsername(e.target.value)}} type="text" placeholder="Username:" />
+                  <Form.Label>Email:</Form.Label>
+                  <Form.Control onChange={(e) => {setEmail(e.target.value)}} type="email" placeholder="Email:" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Password:</Form.Label>

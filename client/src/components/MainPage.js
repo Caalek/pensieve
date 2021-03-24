@@ -5,11 +5,12 @@ import Col from 'react-bootstrap/Col'
 import NavbarComponent from './NavbarComponent'
 import RegisterForm from './RegisterForm'
 import Card from 'react-bootstrap/esm/Card';
+import FooterComponent from './FooterComponent';
 
 export default function MainPage() {
   return (
     <div>
-      <NavbarComponent bg="transparent"></NavbarComponent>
+      <NavbarComponent bg="transparent" />
       <Container fluid id="main-page-bg" className="mb-5">
           <Container>
             <Row>
@@ -33,11 +34,11 @@ export default function MainPage() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    <h1 className="center"><strong>Stay organized</strong></h1>
+                    <h1 className="center mt-2"><strong>What is this?</strong></h1>
                   </Card.Title>
                   <Card.Text>
-                  <img src="/images/man.png" alt="Stay organized!" className="img-fluid"></img>
-                    Write down everything you want on digital sticky notes. Now you don't have to remember anything, as everything is safely stored in your Pensieve.
+                  <object data="/images/checklist.svg" alt="checklist" aria-label="checklist" className="img-fluid"></object>
+                    Pensieve is a note-taking website that lets you write things down your ideas, todos, shopping lists, or whatever you want on sticky notes. With Pensieve, you don't have to remember anything!
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -46,11 +47,11 @@ export default function MainPage() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    <h1 className="center"><strong>Stay minimal</strong></h1>
+                    <h1 className="center mt-2"><strong>On every device!</strong></h1>
                   </Card.Title>
                   <Card.Text>
-                  <img src="/images/woman.png" alt="Stay organized!" className="img-fluid"></img>
-                  Pensieve is simple and minimalistic, and lets you focus on the task at hand without distractions.
+                  <object data="/images/device.svg" alt="devices" aria-label="devices" className="img-fluid"></object>
+                    As the notes are stored on your account, you can log in on every device in the world and still have accces to them!
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -59,25 +60,21 @@ export default function MainPage() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    <h1 className="center"><strong>Stay motivated</strong></h1>
+                  <h1 className="center mt-2"><strong>And the name?</strong></h1>
                   </Card.Title>
                   <Card.Text>
-                  <img src="/images/man_laptop.png" alt="Stay organized!" className="img-fluid"></img>
-                  Pensieve also keeps you stay motivated.
+                  <object data="/images/magic.svg" alt="magic" aria-label="magic" className="img-fluid"></object>
+                    In Harry Potter, Professor Dumbledore had a magical pensieve to store all this memories. This website serves exactly the same purpose. It's a digital pensieve to store everything you need.
                   </Card.Text>
                 </Card.Body>
               </Card>
             </Col>
           </Row>
       </Container>
-      <Container fluid>
-        <footer className="mt-4 footer">
-          <div className="center">Made by <a href="https://github.com/Caalek">Calek</a>.</div>
-          <div className="center"><span>Vector graphics on the main page are a modified version of </span> 
-          <a href="https://www.freepik.com/free-vector/effective-time-management-symbols-flat-elements-set-with-tasks-planning-training-activities-schedule-checkpoints-isolated_7497405.htm#page=1&query=organize&position=1"> these graphics.</a>
-          </div>
-        </footer>
-      </Container>
+      <FooterComponent />
+      <footer className="center">
+        Illustrations by <a href="https://storyset.com/">storyset.com</a>
+      </footer>
     </div>
   )
 }

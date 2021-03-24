@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import axios from 'axios'
 import { Redirect } from 'react-router';
 import Alert from 'react-bootstrap/Alert'
-import {setToken} from '../utils'
+import {checkCurrentUserAuth, setToken} from '../utils'
 
 export default function RegisterForm() {
   const [username, setUsername] = useState()
@@ -62,11 +62,12 @@ export default function RegisterForm() {
               <Form.Group>
               </Form.Group>
               <Button className="mt-3" size="lg" type="submit">Register</Button>
+              {!checkCurrentUserAuth() &&
               <Form.Group>
                 <Form.Text>
                   Already have an account? <a href="/login"> Log in.</a>
                 </Form.Text>
-              </Form.Group>
+              </Form.Group>}
             </Form>
           </Card.Body>
         </Card>

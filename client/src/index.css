@@ -47,5 +47,10 @@ i {
 }
 
 .footer {
-  font-size: small  ;
+  text-align: center;
+  font-size: 15px;
+}
+
+.not-found {
+  font-size: 200px;
 }

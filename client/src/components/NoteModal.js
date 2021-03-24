@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios';
 import {getToken} from '../utils'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 export default function NoteModal(props) {
@@ -52,22 +53,22 @@ export default function NoteModal(props) {
         <Modal.Title><strong>{props.title}</strong></Modal.Title>
 
         {isPinned ? 
-        <Form.Group>
+        <ButtonGroup>
+          <Form.Check onChange={(e) => setIsPinned(e.target.checked)} checked></Form.Check>
           <Form.Label><i id="pin-icon" className="fas fa-thumbtack"></i></Form.Label>
-          <Form.Check onChange={(e) => setIsPinned(e.target.checked)}checked></Form.Check>
-        </Form.Group>
+        </ButtonGroup>
         :
-        <Form.Group>
-          <Form.Label><i id="pin-icon" className="fas fa-thumbtack"></i></Form.Label>
+        <ButtonGroup>
           <Form.Check onChange={(e) => setIsPinned(e.target.checked)}></Form.Check>
-        </Form.Group>}
+          <Form.Label><i id="pin-icon" className="fas fa-thumbtack"></i></Form.Label>
+        </ButtonGroup>}
 
       </Modal.Header>
       <Modal.Body>
           <Form.Group>
           </Form.Group>
           <Form.Group>
-            <Form.Control as="textarea" rows={20} defaultValue={props.contents} onChange={(e) => setNoteContents(e.target.value)}/>
+            <Form.Control as="textarea" rows={15} defaultValue={props.contents} onChange={(e) => setNoteContents(e.target.value)}/>
           </Form.Group>
           <Modal.Footer>
             <Button variant="primary" type="submit">Save</Button>

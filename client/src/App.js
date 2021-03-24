@@ -8,6 +8,7 @@ import TrashPage from './components/TrashPage'
 import BasicFormPage from "./components/BasicFormPage";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
 import ResetPasswordPage from "./components/ResetPasswordPage";
+import NotFoundPage from "./components/NotFoundPage";
 
 export default function App() {
   return (
@@ -36,6 +37,9 @@ export default function App() {
             <BasicFormPage form={<ForgotPasswordForm />} />
           </Route>
           <Route path="/reset-password-page/:token" component={ResetPasswordPage} />
+          <Route>
+            <NotFoundPage />
+          </Route>
         </Switch>
       </Router>
     </div>

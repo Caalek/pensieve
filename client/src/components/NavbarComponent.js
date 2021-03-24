@@ -8,7 +8,7 @@ export default function NavbarComponent(props) {
   return (
     <Navbar collapseOnSelect bg={props.bg} expand="lg">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className="ml-2">
           <img src="/images/logo_small.png" height="60" alt="site logo"></img>
           <span className="site-title"><strong>pensieve</strong></span>
         </Navbar.Brand>

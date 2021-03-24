@@ -27,17 +27,17 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  if (!req.body.password || !req.body.username) return res.send({message: 'Please fill in all the form fields.'})
-  User.findOne({username: req.body.username}, (error, user) => {
+  if (!req.body.password || !req.body.email) return res.send({message: 'Please fill in all the form fields.'})
+  User.findOne({email: req.body.email}, (error, user) => {
 
     if (error) return res.send({auth: false, message: 'Internal server error.'})
-    if (!user) return res.send({auth: false, message: 'Invalid username or password.'})
+    if (!user) return res.send({auth: false, message: 'Invalid email or password.'})
 
     const passwordIsValid = bcrypt.compareSync(req.body.password, user.password)
 
-    if (!passwordIsValid) return res.send({auth: false, message: 'Invalid username or password.'})
+    if (!passwordIsValid) return res.send({auth: false, message: 'Invalid email or password.'})
 
-    const token = jwt.sign({id: user._id}, jwtSecret, {expiresIn: 900}) // expires in 15 minutes
+    const token = jwt.sign({id: user._id}, jwtSecret, {expiresIn: 86400}) // expires in 24 hours
     res.send({auth: true, token: token})
   })
 })
