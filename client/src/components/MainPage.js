@@ -64,7 +64,7 @@ export default function MainPage() {
                   </Card.Title>
                   <Card.Text>
                   <object data="/images/magic.svg" alt="magic" aria-label="magic" className="img-fluid"></object>
-                    In Harry Potter, Professor Dumbledore had a magical pensieve to store all this memories. This website serves exactly the same purpose. It's a digital pensieve to store everything you need.
+                    In Harry Potter, Professor Dumbledore had a magical pensieve to store all his memories. This website serves exactly the same purpose. It's a digital pensieve to store everything you need.
                   </Card.Text>
                 </Card.Body>
               </Card>

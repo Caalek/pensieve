@@ -45,7 +45,6 @@ export default function NoteModal(props) {
     setShow(false)
     props.changeStatus()
   }
-  console.log('pinned state', isPinned)
   return (
     <Modal show={show} animation={true} backdrop="static">
       <Form onSubmit={handleSubmit}>

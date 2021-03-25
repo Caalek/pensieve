@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true
 })
 
-app = express()
+const app = express()
 app.use(express.json())
 app.use(boolParser())
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))

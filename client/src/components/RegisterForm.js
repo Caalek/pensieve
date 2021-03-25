@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router';
 import Alert from 'react-bootstrap/Alert'
 import {checkCurrentUserAuth, setToken} from '../utils'
+import HCaptcha from '@hcaptcha/react-hcaptcha'
 
 export default function RegisterForm() {
   const [username, setUsername] = useState()
@@ -13,27 +14,31 @@ export default function RegisterForm() {
   const [password, setPassword] = useState()
   const [isRegistered, setIsRegistered] = useState(false)
   const [error, setError] = useState()
+  const [hcaptchaToken, setHcaptchaToken] = useState()
 
-  function registerUser(username, email, password) {
+  async function registerUser(username, email, password) {
     const jsonData = {
+      token: hcaptchaToken,
       username: username,
       email: email,
       password: password
     }
-    axios.post('/api/register', jsonData, {headers: {'Content-Type': 'application/json'}})
-    .then(response => {
-      if (response.data.message === 'sucess') {
-        setToken(response.data.token)
-        setIsRegistered(true)
-      } else {
-        setError(response.data.message)
-      }
-    })
+    const response = await axios.post('/api/register', jsonData, {headers: {'Content-Type': 'application/json'}})
+    if (response.data.message === 'sucess') {
+      setToken(response.data.token)
+      setIsRegistered(true)
+    } else if (response.status === 400) {
+      setError('hCaptcha failed.')
+    } else {
+      setError(response.data.message)
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('form submitted')
+    if (!password || !email || !username) return setError('Please fill in all the form fields.')
+    if (!hcaptchaToken) return setError('Please complete the captcha.')
+    if (password.length < 8) return setError('Password must be at least 8 characters long.')
     registerUser(username, email, password)
   }
 
@@ -45,7 +50,7 @@ export default function RegisterForm() {
         <Card>
           <Card.Body>
             <h1><strong>Join us now.</strong></h1>
-            {error ? <Alert variant="danger">{error}</Alert>: null}
+            {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group>
                 <Form.Label>Username:</Form.Label>
@@ -60,8 +65,14 @@ export default function RegisterForm() {
                 <Form.Control onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="Password:"></Form.Control>
               </Form.Group>
               <Form.Group>
+                <div className="mt-3">
+                  <HCaptcha
+                    sitekey="09c2657f-489f-4d4e-a037-19600562605d"
+                    onVerify={(token, ekey) => setHcaptchaToken(token)}
+                  />
+                </div>
               </Form.Group>
-              <Button className="mt-3" size="lg" type="submit">Register</Button>
+              <Button className="mt-1" size="lg" type="submit">Register</Button>
               {!checkCurrentUserAuth() &&
               <Form.Group>
                 <Form.Text>

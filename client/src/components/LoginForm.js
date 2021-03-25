@@ -29,6 +29,7 @@ export default function LoginForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    if (!password || !email) return setError('Please fill in all the form fields.')
     loginUser(email, password)
   }
   

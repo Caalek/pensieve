@@ -3,14 +3,14 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
+const hcaptcha = require('express-hcaptcha')
 const User = require('../models/user')
 const verifyToken = require('../middleware')
 const router = express.Router()
 const jwtSecret = process.env.JWT_SECRET
+const hcaptchaSecret = process.env.HCAPTCHA_SECRET
 
-router.post('/register', async (req, res) => {
-  if (!req.body.password || !req.body.email || !req.body.username) return res.send({message: 'Please fill in all the form fields.'})
-  if (req.body.password.length < 8) return res.send({message: 'Password must be at least 8 characters long.'})
+router.post('/register', hcaptcha.middleware.validate(hcaptchaSecret), async (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8)
   const userOfSameEmailExists = await User.findOne({email: req.body.email})
   if (userOfSameEmailExists) return res.send({message: "A user with this email adress already exists."})
@@ -27,7 +27,6 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  if (!req.body.password || !req.body.email) return res.send({message: 'Please fill in all the form fields.'})
   User.findOne({email: req.body.email}, (error, user) => {
 
     if (error) return res.send({auth: false, message: 'Internal server error.'})

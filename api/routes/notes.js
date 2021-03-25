@@ -16,7 +16,6 @@ router.post('/note', verifyToken, async (req, res) => {
 })
 
 router.patch('/note/:noteId', verifyToken, async (req, res) => {
-  console.log(req.body)
   await Note.updateOne({_id: req.params.noteId}, req.body)
   res.send({message: 'success'})
 })

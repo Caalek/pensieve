@@ -13,7 +13,6 @@ export default function ResetPasswordForm(props) {
 
   async function changePassword() {
     const response = await axios.post('/api/change-password', {password: password}, {headers: {'Authorization': `Bearer ${props.token}`}})
-    console.log(response)
     if (response.data.message === "success") setIsSubmitted(true)
     else (setError(response.data.message))
   }
