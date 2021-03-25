@@ -1,5 +1,5 @@
-import BasicFormPage from "./BasicFormPage";
-import ResetPasswordForm from "./ResetPasswordForm";
+import BasicFormPage from "./BasicFormPage"
+import ResetPasswordForm from "./ResetPasswordForm"
 
 export default function ResetPasswordPage(props) {
   return (

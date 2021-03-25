@@ -1,14 +1,14 @@
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import MainPage from './components/MainPage'
-import AllNotesPage from './components/AllNotesPage';
-import LoginForm from "./components/LoginForm";
-import SettingsPage from "./components/SettingsPage";
+import AllNotesPage from './components/AllNotesPage'
+import LoginForm from "./components/LoginForm"
+import SettingsPage from "./components/SettingsPage"
 import ArchivePage from './components/ArchivePage'
 import TrashPage from './components/TrashPage'
-import BasicFormPage from "./components/BasicFormPage";
-import ForgotPasswordForm from "./components/ForgotPasswordForm";
-import ResetPasswordPage from "./components/ResetPasswordPage";
-import NotFoundPage from "./components/NotFoundPage";
+import BasicFormPage from "./components/BasicFormPage"
+import ForgotPasswordForm from "./components/ForgotPasswordForm"
+import ResetPasswordPage from "./components/ResetPasswordPage"
+import NotFoundPage from "./components/NotFoundPage"
 
 export default function App() {
   return (
@@ -43,5 +43,5 @@ export default function App() {
         </Switch>
       </Router>
     </div>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/esm/Button';
+import React, { useState } from 'react'
+import Button from 'react-bootstrap/esm/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import axios from 'axios'
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router'
 import Alert from 'react-bootstrap/Alert'
 import {checkCurrentUserAuth, setToken} from '../utils'
 import HCaptcha from '@hcaptcha/react-hcaptcha'

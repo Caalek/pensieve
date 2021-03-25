@@ -62,25 +62,39 @@ router.post('/send-reset-email', async (req, res) => {
     to: req.body.email,
     subject: "Pensieve Password Reset",
     html: `
-    <head>
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
-    </head>
-    <body style="font-family: 'Lexend Deca', sans-serif; text-align: center; font-size: 16px; color: black;">
-      <img src="https://i.imgur.com/kpH9KZZ.png" alt="logo" height="80"/>
-      <h1>Hello ${user.username},</h1>
-      <p>
-        To reset your password, click the button below.
-        <br>
-        <a href="https://pensieveapp.herokuapp.com/reset-password-page/${token}">
-          <img style="margin-top: 10px" src="https://i.imgur.com/2SBHYAe.png" alt="reset password">
-        </a>
-        <br>
-        <strong>The password reset link will expire in 5 minutes.</strong>
-        <br>
-        If you didn't request a password reset, ignore this message.
-      </p>
-    </body>`,
+    <html>
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+        <style>
+          body {
+            font-family: 'Lexend Deca', sans-serif;
+            text-align: center;
+            font-size: 16px;
+            color: black;
+          }
+
+          #reset-password-btn {
+            margin-top: 10px
+          }
+        </style>
+      </head>
+      <body>
+        <img src="https://i.imgur.com/kpH9KZZ.png" alt="logo" height="80"/>
+        <h1>Hello ${user.username},</h1>
+        <p>
+          To reset your password, click the button below.
+          <br>
+          <a href="https://pensieveapp.herokuapp.com/reset-password-page/${token}">
+            <img id="reset-password-btn" src="https://i.imgur.com/2SBHYAe.png" alt="reset password">
+          </a>
+          <br>
+          <strong>The password reset link will expire in 5 minutes.</strong>
+          <br>
+          If you didn't request a password reset, ignore this message.
+        </p>
+      </body>
+    </html>`,
   })
 
   res.send({message: "success"})

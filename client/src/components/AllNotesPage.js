@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
+import React, { useEffect } from 'react'
+import { Redirect } from 'react-router'
 import {checkCurrentUserAuth} from '../utils'
 import Container from 'react-bootstrap/Container'
 import TabNavigation from './TabNavigation'

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import axios from 'axios';
+import axios from 'axios'
 import {getToken} from '../utils'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 

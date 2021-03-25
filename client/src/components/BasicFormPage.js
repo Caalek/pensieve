@@ -8,7 +8,7 @@ import FooterComponent from './FooterComponent'
 export default function BasicFormPage(props) {
   return (
     <div>
-      <NavbarComponent />
+      <NavbarComponent bg="transparent"/>
       <Container>
           <Row className="justify-content-center">
             <Col md={4}>{props.form}</Col>

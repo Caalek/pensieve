@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import { Redirect } from 'react-router';
+import React, {useEffect} from 'react'
+import { Redirect } from 'react-router'
 import {checkCurrentUserAuth} from '../utils'
 import Container from 'react-bootstrap/Container'
 import NoteGrid from './NoteGrid'
-import TabNavigation from './TabNavigation';
-import TitleBar from './TitleBar';
+import TabNavigation from './TabNavigation'
+import TitleBar from './TitleBar'
 import NavbarComponent from './NavbarComponent'
 import FooterComponent from './FooterComponent'
 

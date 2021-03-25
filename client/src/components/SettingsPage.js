@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router'
 import {checkCurrentUserAuth, getToken} from '../utils'
-import axios from 'axios';
+import axios from 'axios'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/esm/Card';
+import Card from 'react-bootstrap/esm/Card'
 import NavbarComponent from './NavbarComponent'
 import Spinner from 'react-bootstrap/Spinner'
-import TitleBar from './TitleBar';
+import TitleBar from './TitleBar'
 import Alert from 'react-bootstrap/Alert'
-import FooterComponent from './FooterComponent';
+import FooterComponent from './FooterComponent'
 
 export default function SettingsPage() {
   const [email, setEmail] = useState()
