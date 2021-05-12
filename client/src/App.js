@@ -1,21 +1,32 @@
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
-import MainPage from './components/MainPage'
-import AllNotesPage from './components/AllNotesPage'
-import LoginForm from "./components/LoginForm"
-import SettingsPage from "./components/SettingsPage"
-import ArchivePage from './components/ArchivePage'
-import TrashPage from './components/TrashPage'
-import BasicFormPage from "./components/BasicFormPage"
-import ForgotPasswordForm from "./components/ForgotPasswordForm"
-import ResetPasswordPage from "./components/ResetPasswordPage"
-import NotFoundPage from "./components/NotFoundPage"
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
+import MainPage from './components/pages/MainPage'
+import AllNotesPage from './components/pages/AllNotesPage'
+import LoginForm from "./components/forms/LoginForm"
+import SettingsPage from "./components/pages/SettingsPage"
+import ArchivePage from './components/pages/ArchivePage'
+import TrashPage from './components/pages/TrashPage'
+import BasicFormPage from "./components/pages/BasicFormPage"
+import ForgotPasswordForm from "./components/forms/ForgotPasswordForm"
+import ResetPasswordPage from "./components/pages/ResetPasswordPage"
+import NotFoundPage from "./components/pages/NotFoundPage"
+
+import useToken from './hooks/useToken'
+import {isExpired} from 'react-jwt'
 
 export default function App() {
+  const [token, setToken] = useToken()
+
+  function isAuth() {
+    return (token && !isExpired(token))
+  }
   return (
     <div>
       <Router>
         <Switch>
           <Route exact path="/">
+            {isAuth() ? <Redirect to="/notes/all" /> : <MainPage />}
+          </Route>
+          <Route exact path="/home">
             <MainPage />
           </Route>
           <Route path="/login">

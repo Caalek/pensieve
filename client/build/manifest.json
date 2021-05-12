@@ -1,0 +1,9 @@
+{
+  "short_name": "Pensieve",
+  "name": "All your ideas in one place.",
+  "icons": ["/images/logo_small.png"],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0D6EFD",
+  "background_color": "#ffffff"
+}

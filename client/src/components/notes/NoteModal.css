@@ -1,0 +1,9 @@
+.modal {
+  transform: scale(0.5);
+  transition: .1s all linear;
+  padding-top: 12%;
+}
+
+.modal.show {
+  transform: scale(1);
+}

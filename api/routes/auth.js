@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const hcaptcha = require('express-hcaptcha')
 const User = require('../models/user')
-const verifyToken = require('../middleware')
+const middleware = require('../middleware')
 const router = express.Router()
 const jwtSecret = process.env.JWT_SECRET
 const hcaptchaSecret = process.env.HCAPTCHA_SECRET
 
-router.post('/register', hcaptcha.middleware.validate(hcaptchaSecret), async (req, res) => {
+router.post('/register', hcaptcha.middleware.validate(hcaptchaSecret), middleware.reacherEmailVerify, async (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8)
   const userOfSameEmailExists = await User.findOne({email: req.body.email})
   if (userOfSameEmailExists) return res.send({message: "A user with this email adress already exists."})
@@ -21,7 +21,7 @@ router.post('/register', hcaptcha.middleware.validate(hcaptchaSecret), async (re
   }, (error, user) =>
   {
     if (error) return res.send({message: "Internal server error."})
-    const token = jwt.sign({id: user._id}, jwtSecret, {expiresIn: 900})
+    const token = jwt.sign({id: user._id}, jwtSecret, {expiresIn: 86400})
     res.send({message: 'sucess', token: token})
   })
 })
@@ -100,7 +100,7 @@ router.post('/send-reset-email', async (req, res) => {
   res.send({message: "success"})
 })
 
-router.post('/change-password', verifyToken, async (req, res) => {
+router.post('/change-password', middleware.verifyToken, async (req, res) => {
   if (req.body.password.length < 8) return res.send({message: 'Password must be at least 8 characters long.'})
   const hashedPassword = bcrypt.hashSync(req.body.password, 8)
   await User.updateOne({_id: req._id}, {password: hashedPassword})

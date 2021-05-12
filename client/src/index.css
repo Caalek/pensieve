@@ -2,10 +2,6 @@ body {
   font-family: 'Lexend Deca', sans-serif;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .box-title {
   text-align: center;
 }
@@ -20,10 +16,6 @@ ul {
 
 .site-title {
   margin-left: 10px;
-}
-
-.modal-dialog {
-  padding-top: 10%;
 }
 
 .center {
@@ -46,11 +38,6 @@ i {
   color: white;
 }
 
-.footer {
-  text-align: center;
-  font-size: 15px;
-}
-
 .not-found {
   font-size: 200px;
 }
@@ -71,4 +58,33 @@ i {
   border-radius: 10px;
   border-color: #0D6EFD;
   border-style: solid;
+}
+
+.red-border {
+  border-radius: 10px;
+  border-color: red;
+  border-style: solid;
+}
+
+.navbar {
+  background-color: white !important;
+  top: 0;
+}
+
+.new-button {
+  font-size: 20px;
+}
+
+.nav-links {
+  font-size: 20px;
+  display: none;
+}
+
+@media screen and (max-width: 1900px) {
+  #sidebar {
+    display: none;
+  }
+  .nav-links {
+    display: flex;
+  }
 }
